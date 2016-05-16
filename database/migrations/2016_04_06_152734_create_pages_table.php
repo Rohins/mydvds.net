@@ -15,7 +15,7 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('number')->unsigned();
-            $table->integer('book_id')->unsigned()->unique();
+            $table->integer('book_id')->unsigned();
             $table->string('disk1');
             $table->string('disk2');
             $table->string('disk3');

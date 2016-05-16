@@ -15,6 +15,11 @@ Route::get('/login',  'Auth\AuthController@showLoginForm');
 Route::post('/login', 'Auth\AuthController@login');
 Route::get('/logout', 'Auth\AuthController@logout');
 
+Route::get('/import', 'ImportController@importDatabase');
+Route::get('/info', function() {
+    phpinfo();
+});
+
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 
