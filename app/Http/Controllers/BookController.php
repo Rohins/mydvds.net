@@ -49,7 +49,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return Book::find($id);
+        $book = Book::find($id);
+        $book->pages;
+        return $book;
     }
 
     /**
