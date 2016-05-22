@@ -8,6 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body" id='app-browse'>
+                    <browse-list></browse-list>
                 </div>
             </div>
         </div>
@@ -17,8 +18,9 @@
 
 <template id ="browse-list">
     <ol>
-        <li v-for="dvd in dvds">
+        <li v-for="dvd in dvds" class='list-group-item'>
             @{{ dvd['name'] }}
         </li>
     </ol>
 </template>
+

@@ -17,5 +17,8 @@ Route::get('/logout', 'Auth\AuthController@logout');
 
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
+Route::get('/browse', function() {
+    return view('dvds.browse');
+});
 
 Route::resource('book', 'BookController');
