@@ -10144,8 +10144,28 @@ Vue.component('browse-list', {
     }
 });
 
+Vue.component('search-list', {
+    template: '#search-list',
+
+    data: function data() {
+        return {
+            searchDvd: "",
+            dvds: []
+        };
+    },
+    methods: {
+        searchDvds: function searchDvds() {
+            var that_dvds = this.dvds;
+            $.getJSON('/search/' + this.searchDvd, function (data) {
+                this.dvds = data;
+            }.bind(this));
+        }
+    }
+});
+
 new Vue({
-    el: '#app-browse'
+    el: '#app'
+
 });
 
 },{"vue":2}]},{},[3]);

@@ -17,8 +17,14 @@ Route::get('/logout', 'Auth\AuthController@logout');
 
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
+
 Route::get('/browse', function() {
     return view('dvds.browse');
 });
+Route::get('/search', function() {
+    return view('dvds.search');
+});
+Route::get('/search/{dvd}', 'BookController@searchDvd');
 
 Route::resource('book', 'BookController');
+Route::get('book/{id}/pages', 'BookController@getPagesById');

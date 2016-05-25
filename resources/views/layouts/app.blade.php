@@ -40,7 +40,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Grandpa's DVDs
                 </a>
             </div>
 
@@ -48,6 +48,8 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/browse') }}">Browse Books</a></li>
+                    <li><a href="{{ url('/search') }}">Search for DVD</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
