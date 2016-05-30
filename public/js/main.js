@@ -10139,7 +10139,6 @@ Vue.component('browse-list', {
     created: function created() {
         $.getJSON('/book', function (data) {
             this.dvds = data;
-            console.log(this.dvds);
         }.bind(this));
     }
 });
@@ -10155,7 +10154,6 @@ Vue.component('search-list', {
     },
     methods: {
         searchDvds: function searchDvds() {
-            var that_dvds = this.dvds;
             $.getJSON('/search/' + this.searchDvd, function (data) {
                 this.dvds = data;
             }.bind(this));
@@ -10164,7 +10162,52 @@ Vue.component('search-list', {
 });
 
 new Vue({
-    el: '#app'
+    el: '#app',
+
+    data: {
+        browse_name: "Test",
+        browse_pages: []
+    },
+
+    methods: {
+        modalBook: function modalBook(book_id) {
+            $.getJSON('book/' + book_id, function (data) {
+                this.browse_pages = data.pages;
+                this.browse_name = data.name;
+            }.bind(this));
+        },
+
+        createBook: function createBook() {
+            var book_title = prompt("Please enter the name of the book:", "");
+            if (book_title !== null) {
+                console.log(book_title);
+            }
+        },
+
+        editBookName: function editBookName(book_id) {
+            var book_name = prompt("Please enter a new name for the book:", "");
+            if (book_name !== null) {
+                $.get("book/" + book_id + "/" + book_name, function (data) {
+                    location.reload();
+                });
+            }
+        },
+        editBookNameB: function editBookNameB(book_id) {
+            var book_name = prompt("Please enter a new name for the book:", "");
+            if (book_name !== null) {
+                $.post("book/rename", { id: book_id, name: book_name }, function (data) {
+                    console.log('data');
+                });
+            }
+        },
+        updateDisk: function updateDisk(page_id, disk) {
+            var disk_name = prompt("Please enter a new name for this disk:", "");
+
+            if (disk_name !== null) {
+                alert("New Name!");
+            }
+        }
+    }
 
 });
 

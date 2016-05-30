@@ -15,16 +15,16 @@ Route::get('/login',  'Auth\AuthController@showLoginForm');
 Route::post('/login', 'Auth\AuthController@login');
 Route::get('/logout', 'Auth\AuthController@logout');
 
+//Navigation
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
+Route::get('/browse', 'HomeController@browse'); 
+Route::get('/search', 'HomeController@search'); 
 
-Route::get('/browse', function() {
-    return view('dvds.browse');
-});
-Route::get('/search', function() {
-    return view('dvds.search');
-});
+//Search for DVD
 Route::get('/search/{dvd}', 'BookController@searchDvd');
 
 Route::resource('book', 'BookController');
-Route::get('book/{id}/pages', 'BookController@getPagesById');
+//Route::get('book/{id}/pages', 'BookController@getPagesById');
+Route::get('book/{id}/{name}', 'BookController@updateNameGet');
+Route::post('book/rename', 'BookController@updateName');

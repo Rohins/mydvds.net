@@ -16,8 +16,7 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
-        body {
-            font-family: 'Lato';
+        body { font-family: 'Lato';
         }
 
         .fa-btn {
@@ -46,11 +45,12 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
+                @if (!Auth::guest())
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/browse') }}">Browse Books</a></li>
                     <li><a href="{{ url('/search') }}">Search for DVD</a></li>
                 </ul>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

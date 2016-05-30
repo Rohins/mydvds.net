@@ -12,6 +12,14 @@ use DB;
 class BookController extends Controller
 {
     /**
+        This controller requires the user to be logged in
+        in order to utilize its methods
+    **/
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -21,15 +29,6 @@ class BookController extends Controller
         return Book::get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,8 +65,14 @@ class BookController extends Controller
         return Book::find($id)->pages;
     }
 
+    /**
+     * Search all disks in all pages for a dvd
+     * @param string $dvd
+     * @return array
+     **/
     public function searchDvd($dvd)
     {
+        $dvd = strtolower($dvd);
         $allPages = DB::select('select book_id, number, disk1, disk2,  disk3, disk4 from pages where disk1 like "%'.$dvd.'%" or
                                               disk2 like "%'.$dvd.'%" or
                                               disk3 like "%'.$dvd.'%" or 
@@ -77,6 +82,14 @@ class BookController extends Controller
         return $dvds;
     }
 
+
+    /**
+     * Refactored helper function for checking all the 
+     * disks for matches.
+     * @param
+     * @param string $dvd
+     * @param array $dvds
+     **/
     public function checkDisks($page, $dvd, $dvds)
     {
         $dvds = $this->checkDisk($page, $dvd, $dvds, 1);
@@ -86,6 +99,14 @@ class BookController extends Controller
         return $dvds;
     }
 
+    /**
+     * Refactored helper function for checking individual
+     * disks.
+     * @param
+     * @param string $dvd
+     * @param array $dvds
+     * @param int $number
+     **/
     public function checkDisk($page, $dvd, $dvds, $number)
     {
         $diskNumber = 'disk'.$number;
@@ -99,6 +120,13 @@ class BookController extends Controller
         return $dvds;
     }
     
+    /**
+     * Filters pages to include book name, slot number,
+     * name of dvd, and page number.
+     * @param array $allPages
+     * @param string $dvd
+     * @return array
+     **/
     public function filterPages($allPages, $dvd)
     {
         $dvds = [];
@@ -142,5 +170,20 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateName(Request $request)
+    {
+        return $request;
+        $book = Book::find($request->input('id'));
+        $book->name = $request->input('name');
+        $book->save();
+    }
+
+    public function updateNameGet($id, $name)
+    {
+        $book = Book::find($id);
+        $book->name = $name;
+        $book->save();
     }
 }

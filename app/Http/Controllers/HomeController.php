@@ -26,4 +26,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function browse()
+    {
+        return view('dvds.browse');
+    }
+
+    public function search()
+    {
+        return view('dvds.search');
+    }
 }
