@@ -195,4 +195,19 @@ class BookController extends Controller
         $page->$disk = $name;
         $page->save();
     }
+
+    public function createNewBook($name)
+    {
+        $book = new Book;
+        $book->name = $name;
+        $book->save();
+
+        for ($i = 1; $i <= 17; $i++) {
+            $page = new Page;
+            $page->book_id = $book->id;
+            $page->number  = $i;
+            $page->save();
+        }
+    }
+
 }

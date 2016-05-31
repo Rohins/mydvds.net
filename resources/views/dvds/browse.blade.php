@@ -50,17 +50,41 @@
                                         <tr>
                                             <td>@{{page.number}}</td>
                                             <td>2</td>
-                                            <td>@{{page.disk2}}</td>
+                                            <td>
+                                                @{{page.disk2}}
+                                                <button 
+                                                    type='button'
+                                                    class='btn btn-default'
+                                                    @click="updateDisk(browse_book_id,page['id'],2)">
+                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                </button>
+                                            </td>
                                         </tr>   
                                         <tr>
                                             <td>@{{page.number}}</td>
                                             <td>3</td>
-                                            <td>@{{page.disk3}}</td>
+                                            <td>
+                                                @{{page.disk3}}
+                                                <button 
+                                                    type='button'
+                                                    class='btn btn-default'
+                                                    @click="updateDisk(browse_book_id,page['id'],3)">
+                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                </button>
+                                            </td>
                                         </tr>   
                                         <tr>
                                             <td>@{{page.number}}</td>
                                             <td>4</td>
-                                            <td>@{{page.disk4}}</td>
+                                            <td>
+                                                @{{page.disk4}}
+                                                <button 
+                                                    type='button'
+                                                    class='btn btn-default'
+                                                    @click="updateDisk(browse_book_id,page['id'],4)">
+                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                </button>
+                                            </td>
                                         </tr>   
                                     </template>
                                 </tbody>

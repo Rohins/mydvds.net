@@ -30,3 +30,4 @@ Route::get('book/{id}/{name}', 'BookController@updateNameGet');
 Route::post('book/rename', 'BookController@updateName');
 
 Route::get('page/{id}/{disk_number}/{name}', 'BookController@updateDiskGet');
+Route::get('new/book/{name}', 'BookController@createNewBook');

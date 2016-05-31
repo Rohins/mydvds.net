@@ -59,7 +59,9 @@ new Vue({
         createBook: function() {
             var book_title = prompt("Please enter the name of the book:", "");
             if (book_title !== null) {
-                console.log(book_title);
+                $.get("new/book/"+book_title, function(data) {
+                    location.reload();
+                });
             }
         },
 
