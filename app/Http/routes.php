@@ -28,3 +28,5 @@ Route::resource('book', 'BookController');
 //Route::get('book/{id}/pages', 'BookController@getPagesById');
 Route::get('book/{id}/{name}', 'BookController@updateNameGet');
 Route::post('book/rename', 'BookController@updateName');
+
+Route::get('page/{id}/{disk_number}/{name}', 'BookController@updateDiskGet');

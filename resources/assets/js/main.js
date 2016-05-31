@@ -43,6 +43,7 @@ new Vue({
 
     data: {
         browse_name: "Test",
+        browse_book_id: "",
         browse_pages: []
     },
 
@@ -51,6 +52,7 @@ new Vue({
             $.getJSON('book/'+book_id, function(data) {
                 this.browse_pages = data.pages;
                 this.browse_name  = data.name;
+                this.browse_book_id = data.id;
             }.bind(this));
         },
 
@@ -77,11 +79,17 @@ new Vue({
                 });
             }
         },
-        updateDisk: function(page_id, disk) {
+        updateDisk: function(book_id, page_id, disk) {
             var disk_name = prompt("Please enter a new name for this disk:", "");
 
             if (disk_name !== null) {
-                alert("New Name!");
+                $.get("page/"+page_id+"/"+disk+"/"+disk_name, function(data) {
+                    $.getJSON('book/'+book_id, function(data) {
+                        this.browse_pages = data.pages;
+                        this.browse_name  = data.name;
+                        this.browse_book_id = data.id;
+                    }.bind(this));
+                }.bind(this,book_id));
             }
         }
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Book;
+use App\Page;
 
 use DB;
 
@@ -185,5 +186,13 @@ class BookController extends Controller
         $book = Book::find($id);
         $book->name = $name;
         $book->save();
+    }
+
+    public function updateDiskGet($id, $disk_number, $name)
+    {
+        $page = Page::find($id);
+        $disk = 'disk'.$disk_number;
+        $page->$disk = $name;
+        $page->save();
     }
 }

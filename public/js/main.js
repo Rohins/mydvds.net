@@ -10132,6 +10132,10 @@ module.exports = Vue;
 
 var Vue = require('vue');
 
+/**
+ * Component for listing all books
+ **/
+
 Vue.component('browse-list', {
     props: ['dvds'],
     template: '#browse-list',
@@ -10143,6 +10147,9 @@ Vue.component('browse-list', {
     }
 });
 
+/**
+ * Component for listing results from a search
+ **/
 Vue.component('search-list', {
     template: '#search-list',
 
@@ -10166,6 +10173,7 @@ new Vue({
 
     data: {
         browse_name: "Test",
+        browse_book_id: "",
         browse_pages: []
     },
 
@@ -10174,6 +10182,7 @@ new Vue({
             $.getJSON('book/' + book_id, function (data) {
                 this.browse_pages = data.pages;
                 this.browse_name = data.name;
+                this.browse_book_id = data.id;
             }.bind(this));
         },
 
@@ -10200,11 +10209,17 @@ new Vue({
                 });
             }
         },
-        updateDisk: function updateDisk(page_id, disk) {
+        updateDisk: function updateDisk(book_id, page_id, disk) {
             var disk_name = prompt("Please enter a new name for this disk:", "");
 
             if (disk_name !== null) {
-                alert("New Name!");
+                $.get("page/" + page_id + "/" + disk + "/" + disk_name, function (data) {
+                    $.getJSON('book/' + book_id, function (data) {
+                        this.browse_pages = data.pages;
+                        this.browse_name = data.name;
+                        this.browse_book_id = data.id;
+                    }.bind(this));
+                }.bind(this, book_id));
             }
         }
     }

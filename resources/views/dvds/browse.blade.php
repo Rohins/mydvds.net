@@ -42,7 +42,7 @@
                                                 <button 
                                                     type='button'
                                                     class='btn btn-default'
-                                                    @click="updateDisk(page['id'],1)">
+                                                    @click="updateDisk(browse_book_id,page['id'],1)">
                                                     <span class="glyphicon glyphicon-edit"></span>
                                                 </button>
                                             </td>
