@@ -42,7 +42,7 @@
                                                 <button 
                                                     type='button'
                                                     class='btn btn-default'
-                                                    @click="updateDisk(browse_book_id,page['id'],1)">
+                                                    @click="updateDisk(browse_book_id,page['id'],1,page['disk1'])">
                                                     <span class="glyphicon glyphicon-edit"></span>
                                                 </button>
                                             </td>
@@ -55,7 +55,7 @@
                                                 <button 
                                                     type='button'
                                                     class='btn btn-default'
-                                                    @click="updateDisk(browse_book_id,page['id'],2)">
+                                                    @click="updateDisk(browse_book_id,page['id'],2,page['disk2'])">
                                                     <span class="glyphicon glyphicon-edit"></span>
                                                 </button>
                                             </td>
@@ -68,7 +68,7 @@
                                                 <button 
                                                     type='button'
                                                     class='btn btn-default'
-                                                    @click="updateDisk(browse_book_id,page['id'],3)">
+                                                    @click="updateDisk(browse_book_id,page['id'],3,page['disk3'])">
                                                     <span class="glyphicon glyphicon-edit"></span>
                                                 </button>
                                             </td>
@@ -81,7 +81,7 @@
                                                 <button 
                                                     type='button'
                                                     class='btn btn-default'
-                                                    @click="updateDisk(browse_book_id,page['id'],4)">
+                                                    @click="updateDisk(browse_book_id,page['id'],4,page['disk4'])">
                                                     <span class="glyphicon glyphicon-edit"></span>
                                                 </button>
                                             </td>
@@ -118,7 +118,7 @@
             <button 
                 type='button'
                 class='btn btn-default'
-                @click="this.$root.editBookName(dvd['id'])">
+                @click="this.$root.editBookName(dvd['id'], dvd['name'])">
                 <span class="glyphicon glyphicon-edit"></span>
             </button>
                 @{{ dvd['name'] }}

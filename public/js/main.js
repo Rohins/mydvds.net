@@ -10195,24 +10195,24 @@ new Vue({
             }
         },
 
-        editBookName: function editBookName(book_id) {
-            var book_name = prompt("Please enter a new name for the book:", "");
+        editBookName: function editBookName(book_id, original_name) {
+            var book_name = prompt("Please enter a new name for the book:", original_name);
             if (book_name !== null) {
                 $.get("book/" + book_id + "/" + book_name, function (data) {
                     location.reload();
                 });
             }
         },
-        editBookNameB: function editBookNameB(book_id) {
-            var book_name = prompt("Please enter a new name for the book:", "");
+        editBookNameB: function editBookNameB(book_id, original_name) {
+            var book_name = prompt("Please enter a new name for the book:", original_name);
             if (book_name !== null) {
                 $.post("book/rename", { id: book_id, name: book_name }, function (data) {
                     console.log('data');
                 });
             }
         },
-        updateDisk: function updateDisk(book_id, page_id, disk) {
-            var disk_name = prompt("Please enter a new name for this disk:", "");
+        updateDisk: function updateDisk(book_id, page_id, disk, original_name) {
+            var disk_name = prompt("Please enter a new name for this disk:", original_name);
 
             if (disk_name !== null) {
                 $.get("page/" + page_id + "/" + disk + "/" + disk_name, function (data) {
