@@ -56,15 +56,31 @@ new Vue({
         },
 
         createBook: function() {
-            var book_title = prompt("Please enter the name of the book:", "");
-            if (book_title !== null) {
-                $.get("new/book/"+book_title, function(data) {
-                    location.reload();
-                });
-            }
+            bootbox.prompt({
+                title: "Please enter the name of the book:",
+                callback: function(book_title) {
+                    if (book_title !== null) {
+                        $.get("new/book/"+book_title, function(data) {
+                                location.reload();
+                        });
+                    }
+                }
+            });
         },
 
         editBookName: function(book_id, original_name) {
+            bootbox.prompt({
+              title: "What is your real name?",
+              value: "makeusabrew",
+              callback: function(result) {
+                if (result === null) {
+                  Example.show("Prompt dismissed");
+                } else {
+                  Example.show("Hi <b>"+result+"</b>");
+                }
+              }
+            });
+
             var book_name = prompt("Please enter a new name for the book:", original_name);
             if (book_name !== null) {
                 $.get("book/"+book_id+"/"+book_name, function(data) {
@@ -72,15 +88,19 @@ new Vue({
                 });
             }
         },
-        editBookNameB: function(book_id, original_name) {
-            var book_name = prompt("Please enter a new name for the book:", original_name);
-            if (book_name !== null) {
-                $.post("book/rename", {id: book_id, name: book_name}, function(data) {
-                    console.log('data');
-                });
-            }
-        },
         updateDisk: function(book_id, page_id, disk, original_name) {
+            bootbox.prompt({
+              title: "What is your real name?",
+              value: "makeusabrew",
+              callback: function(result) {
+                if (result === null) {
+                  Example.show("Prompt dismissed");
+                } else {
+                  Example.show("Hi <b>"+result+"</b>");
+                }
+              }
+            });
+            
             var disk_name = prompt("Please enter a new name for this disk:", original_name);
 
             if (disk_name !== null) {
