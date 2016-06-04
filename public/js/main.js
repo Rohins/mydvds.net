@@ -10201,23 +10201,18 @@ new Vue({
 
         editBookName: function editBookName(book_id, original_name) {
             bootbox.prompt({
-                title: "What is your real name?",
-                value: "makeusabrew",
-                callback: function callback(result) {
-                    if (result === null) {
-                        Example.show("Prompt dismissed");
-                    } else {
-                        Example.show("Hi <b>" + result + "</b>");
+                title: "Please enter a new name for the book",
+                value: original_name,
+                callback: function (original_name, book_id, book_name) {
+                    if (book_name !== null) {
+                        $.get("book/" + book_id + "/" + book_name, function (data) {
+                            alert("book/" + book_id + "/" + book_name);
+                            alert(original_name);
+                            location.reload();
+                        });
                     }
-                }
+                }.bind(this, original_name, book_id)
             });
-
-            var book_name = prompt("Please enter a new name for the book:", original_name);
-            if (book_name !== null) {
-                $.get("book/" + book_id + "/" + book_name, function (data) {
-                    location.reload();
-                });
-            }
         },
         updateDisk: function updateDisk(book_id, page_id, disk, original_name) {
             bootbox.prompt({
