@@ -10201,46 +10201,35 @@ new Vue({
 
         editBookName: function editBookName(book_id, original_name) {
             bootbox.prompt({
-                title: "Please enter a new name for the book",
+                title: "Please enter a new name for this book:",
                 value: original_name,
-                callback: function (original_name, book_id, book_name) {
+                callback: function (book_id, book_name) {
                     if (book_name !== null) {
                         $.get("book/" + book_id + "/" + book_name, function (data) {
-                            alert("book/" + book_id + "/" + book_name);
-                            alert(original_name);
                             location.reload();
                         });
                     }
-                }.bind(this, original_name, book_id)
+                }.bind(this, book_id)
             });
         },
         updateDisk: function updateDisk(book_id, page_id, disk, original_name) {
             bootbox.prompt({
-                title: "What is your real name?",
-                value: "makeusabrew",
-                callback: function callback(result) {
-                    if (result === null) {
-                        Example.show("Prompt dismissed");
-                    } else {
-                        Example.show("Hi <b>" + result + "</b>");
+                title: "Please enter a new name for this disk:",
+                value: original_name,
+                callback: function (book_id, page_id, disk, disk_name) {
+                    if (disk_name !== null) {
+                        $.get("page/" + page_id + "/" + disk + "/" + disk_name, function (data) {
+                            $.getJSON('book/' + book_id, function (data) {
+                                this.browse_pages = data.pages;
+                                this.browse_name = data.name;
+                                this.browse_book_id = data.id;
+                            }.bind(this));
+                        }.bind(this, book_id));
                     }
-                }
+                }.bind(this, book_id, page_id, disk)
             });
-
-            var disk_name = prompt("Please enter a new name for this disk:", original_name);
-
-            if (disk_name !== null) {
-                $.get("page/" + page_id + "/" + disk + "/" + disk_name, function (data) {
-                    $.getJSON('book/' + book_id, function (data) {
-                        this.browse_pages = data.pages;
-                        this.browse_name = data.name;
-                        this.browse_book_id = data.id;
-                    }.bind(this));
-                }.bind(this, book_id));
-            }
         }
     }
-
 });
 
 },{"vue":2}]},{},[3]);
